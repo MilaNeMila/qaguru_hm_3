@@ -71,17 +71,17 @@ public class PracticeFormTests extends TestBase {
         $(".table").shouldHave(text("26 "+month+","+year));
     }
 
-    public void assertsForms(String SUBJECTS,
-                             String ADDRESS,
-                             String HOBBIE,
-                             String EMAIL_USER,
-                             String STATE,
-                             String CITY
+    public void assertsForms(String subjects,
+                             String address,
+                             String hobbie,
+                             String emailUser,
+                             String state,
+                             String city
     ){
-        $(".table").shouldHave(text(SUBJECTS));
-        $(".table").shouldHave(text(ADDRESS));
-        $(".table").shouldHave(text(HOBBIE));
-        $(".table").shouldHave(text(EMAIL_USER));
-        $(".table").shouldHave(text(STATE +" " +CITY));
+        $(".table").shouldHave(text(subjects));
+        $(".table").shouldHave(text(address));
+        $(".table").shouldHave(text(hobbie));
+        $(".table").shouldHave(text(emailUser));
+        $(".table").shouldHave(text(state +" " +city));
     }
 }
