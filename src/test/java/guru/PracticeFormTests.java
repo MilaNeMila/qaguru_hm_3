@@ -1,87 +1,66 @@
 package guru;
 
+import guru.registrationComponents.BirthCalendar;
+import guru.registrationComponents.RegistrationPage;
+import guru.registrationComponents.RequiredFields;
+import guru.registrationComponents.UnrequiredFields;
 import org.junit.jupiter.api.Test;
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 
 public class PracticeFormTests extends TestBase {
 
+ RegistrationPage registrationPage = new RegistrationPage();
+ BirthCalendar birthCalendar = new BirthCalendar();
+ RequiredFields requiredFields = new RequiredFields();
+ UnrequiredFields unrequiredFields = new UnrequiredFields();
+
 
     @Test
-    void firstTest(){
-        open("automation-practice-form");
-        executeJavaScript("$('#fixedban').remove()");
-        executeJavaScript("$('footer').remove()");
-        formInputRequiredFields("Name", "lastName", "Female", "7777777777");
-        birthDayInputField("February","2001");
-        formInputFields("Arts", "textadress","Sports", "test@test.com", "NCR", "Delhi");
-        $("#submit").click();
-        assertsFormsRequiredFields("Name", "lastName", "Female","7777777777","February","2001");
-        assertsForms("Arts","textadress","Sports","test@test.com","NCR","Delhi");
+    void fullFieldTest(){
+        registrationPage.openPage();
+        requiredFields.setFirstName("Name")
+                .setLastName("Last")
+                .setNumber("7777777777")
+                .setGenderField("Female");
+        birthCalendar.birthDayInputField("February","2001");
+        unrequiredFields.setAddress("Address")
+                        .setEmail("test@test.com")
+                        .setHobbie("Sports")
+                        .setState("NCR")
+                        .setSubjects("Arts")
+                        .setCity("Delhi")
+                        .setPicture();
+        registrationPage.submitButtonClick();
+        registrationPage.assertName("Name", "Last")
+                .assertNumber("7777777777")
+                .assertBirth("February","2001")
+                .assertGender("Female")
+                .assertAddress("Address")
+                .assertEmail("test@test.com")
+                .assertHobbie("Sports")
+                .assertCity("NCR", "Delhi")
+                .assertSubjects("Arts");
+
 }
 
-    public void formInputRequiredFields (String firstName,
-                                         String lastName,
-                                         String gender,
-                                         String userNumber) {
-        $("#firstName").setValue(firstName);
-        $("#lastName").setValue(lastName);
-        $("#genterWrapper").$(byText(gender)).click();
-        $("#userNumber").setValue(userNumber);
+    @Test
+    void minimumFieldTest(){
+        registrationPage.openPage();
+        requiredFields.setFirstName("Name")
+                .setLastName("Last")
+                .setNumber("7777777777")
+                .setGenderField("Female");
+        birthCalendar.birthDayInputField("February","2001");
+        registrationPage.submitButtonClick();
+        registrationPage.assertName("Name", "Last")
+                .assertNumber("7777777777")
+                .assertBirth("February","2001")
+                .assertGender("Female");
     }
 
-    public void formInputFields(String subjects,
-                                String address,
-                                String hobbie,
-                                String emailUser,
-                                String state,
-                                String city
-                                ){
-        $("#subjectsInput").setValue(subjects).pressEnter();
-        $("#userEmail").setValue(emailUser);
-        $("#hobbiesWrapper").$(byText(hobbie)).click();
-        $("#currentAddress").setValue(address);
-        $("#uploadPicture").uploadFromClasspath("photo_2024-01-02_16-20-48.jpg");
-        $("#stateCity-wrapper").$(byText("Select State")).click();
-        $("#stateCity-wrapper").$(byText(state)).click();
-        $("#stateCity-wrapper").$(byText("Select City")).click();
-        $("#stateCity-wrapper").$(byText(city)).click();
+    @Test
+    void negativTest(){
+        registrationPage.openPage().submitButtonClick().validationForm();
     }
 
-    public void birthDayInputField(String month,
-                                   String year
-                                   ){
-        $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption(month);
-        $(".react-datepicker__year-select").selectOption(year);
-        $(".react-datepicker__day--026").click();
-    }
-
-    public void assertsFormsRequiredFields(String firstName,
-                                           String lastName,
-                                           String gender,
-                                           String userNumber,
-                                           String month,
-                                           String year){
-        $(".table").shouldHave(text(firstName+ " " + lastName));
-        $(".table").shouldHave(text(gender));
-        $(".table").shouldHave(text(userNumber));
-        $(".table").shouldHave(text("26 "+month+","+year));
-    }
-
-    public void assertsForms(String subjects,
-                             String address,
-                             String hobbie,
-                             String emailUser,
-                             String state,
-                             String city
-    ){
-        $(".table").shouldHave(text(subjects));
-        $(".table").shouldHave(text(address));
-        $(".table").shouldHave(text(hobbie));
-        $(".table").shouldHave(text(emailUser));
-        $(".table").shouldHave(text(state +" " +city));
-    }
 }
