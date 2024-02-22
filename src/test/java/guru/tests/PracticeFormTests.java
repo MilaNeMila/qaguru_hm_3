@@ -15,8 +15,7 @@ public class PracticeFormTests extends TestBase {
  BirthCalendar birthCalendar = new BirthCalendar();
  RequiredFields requiredFields = new RequiredFields();
  UnrequiredFields unrequiredFields = new UnrequiredFields();
-
-    static RandomUtilits randomData = new RandomUtilits();
+ RandomUtilits randomData = new RandomUtilits();
 
 
 
@@ -28,7 +27,7 @@ public class PracticeFormTests extends TestBase {
                 .setNumber(randomData.userNumber)
                 .setGenderField(randomData.gender);
         birthCalendar.birthDayInputField(randomData.birthMonth, randomData.birthYear);
-        unrequiredFields.setAddress(randomData.userEmail)
+        unrequiredFields.setAddress(randomData.streetAddress)
                         .setEmail(randomData.userEmail)
                         .setHobbie(randomData.userHobbie)
                         .setSubjects(randomData.userSubjects)
