@@ -7,7 +7,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class StudentTableForm {
 
-    private static SelenideElement tableField = $(".table");
+    private SelenideElement tableField = $(".table");
 
     public StudentTableForm assertName(String firstName,
                                        String lastName){

@@ -11,7 +11,7 @@ public class BirthCalendar {
     private SelenideElement birthCalendarField = $("#dateOfBirthInput");
     private SelenideElement birthYearField = $(".react-datepicker__year-select");
     private SelenideElement birthMonthField = $(".react-datepicker__month-select");
-    private SelenideElement birthDayField = $(".react-datepicker__month");;
+    private SelenideElement birthDayField = $(".react-datepicker__month:not(.react-datepicker__day--outside-month)");
 
 
     public void birthDayInputField(String day,

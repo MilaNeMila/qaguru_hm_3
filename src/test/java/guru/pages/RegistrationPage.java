@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private static SelenideElement submitButton = $("#submit"),
+    private SelenideElement submitButton = $("#submit"),
             userForm = $("#userForm"),
             subjectsField = $("#subjectsInput"),
             emailField = $("#userEmail"),
