@@ -1,4 +1,4 @@
-package guru.registrationComponents;
+package guru.pages;
 
 import com.codeborne.selenide.SelenideElement;
 

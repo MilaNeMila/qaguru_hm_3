@@ -1,10 +1,11 @@
-package guru;
+package guru.tests;
 
-import guru.textBoxComponents.TextBox;
+import guru.TestBase;
+import guru.pages.TextBoxPage;
 import org.junit.jupiter.api.Test;
 
-public class TextBoxTest extends TestBase{
-    TextBox textBox = new TextBox();
+public class TextBoxTest extends TestBase {
+    TextBoxPage textBox = new TextBoxPage();
 
     @Test
     public void fullFieldTest(){

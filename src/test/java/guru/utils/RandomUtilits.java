@@ -6,10 +6,10 @@ import java.util.Locale;
 import java.util.Map;
 
 public class RandomUtilits {
-    static Faker faker = new Faker(new Locale("ru"));
-    static Faker emailFaker = new Faker(new Locale("eng"));
+    Faker faker = new Faker(new Locale("ru"));
+    Faker emailFaker = new Faker(new Locale("eng"));
 
-    static public String firstName = faker.name().firstName(),
+    public String firstName = faker.name().firstName(),
             lastName = faker.name().lastName(),
             userEmail = emailFaker.internet().emailAddress(),
             streetAddress = faker.twinPeaks().quote(),
@@ -23,28 +23,28 @@ public class RandomUtilits {
             userHobbie = randomHobbie();
 
 
-    static public String randomMonth() {
+    public String randomMonth() {
         return faker.options().option("January", "February", "March", "April", "May", "June",
                 "July", "August", "September", "October", "November", "December");
     }
 
-    static public String randomHobbie() {
+    public String randomHobbie() {
         return faker.options().option("Sports", "Reading", "Music");
     }
 
-    static public String randomGender() {
+    public String randomGender() {
         return faker.options().option("Male", "Female", "Other");
     }
 
-    static public String randomSubjects() {
+    public String randomSubjects() {
         return faker.options().option("Maths", "Arts", "English", "Biology");
     }
 
-    static public String randomState() {
+    public String randomState() {
         return faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     }
 
-    static public String cityByState(String state) {
+    public String cityByState(String state) {
         Map<String, String> city = new HashMap<>() {{
             put("NCR","Delhi");
             put("NCR","Gurgaon");

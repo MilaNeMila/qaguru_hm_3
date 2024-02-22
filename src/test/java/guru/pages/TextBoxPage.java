@@ -1,4 +1,4 @@
-package guru.textBoxComponents;
+package guru.pages;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -6,7 +6,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
-public class TextBox {
+public class TextBoxPage {
     private static SelenideElement userName = $("#userName"),
             userEmail = $("#userEmail"),
             currentAddress = $("#currentAddress"),
@@ -17,36 +17,36 @@ public class TextBox {
             outputUserEmail = $("#output #email"),
             outputCurrentAddress = $("#output #currentAddress"),
             outputPermanentAddress = $("#output #permanentAddress");
-    public TextBox openPage(){
+    public TextBoxPage openPage(){
         open("text-box");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public TextBox setUserName(String name){
+    public TextBoxPage setUserName(String name){
         userName.setValue(name);
         return this;
     }
-    public TextBox setUserEmail(String email){
+    public TextBoxPage setUserEmail(String email){
         userEmail.setValue(email);
         return this;
     }
-    public TextBox setCurrentAddress(String address){
+    public TextBoxPage setCurrentAddress(String address){
         currentAddress.setValue(address);
         return this;
     }
-    public TextBox setPermanentAddress(String address){
+    public TextBoxPage setPermanentAddress(String address){
         permanentAddress.setValue(address);
         return this;
     }
 
-    public TextBox submitButtonClick(){
+    public TextBoxPage submitButtonClick(){
         submitButton.click();
         return this;
     }
 
-    public TextBox assertForm(String name, String email, String currentAddress, String permanentAddress){
+    public TextBoxPage assertForm(String name, String email, String currentAddress, String permanentAddress){
         outputUserName.shouldHave(text(name));
         outputUserEmail.shouldHave(text(email));
         outputCurrentAddress.shouldHave(text(currentAddress));

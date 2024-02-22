@@ -1,15 +1,12 @@
-package guru;
+package guru.tests;
 
-import com.github.javafaker.Faker;
-import guru.registrationComponents.BirthCalendar;
-import guru.registrationComponents.RegistrationPage;
-import guru.registrationComponents.RequiredFields;
-import guru.registrationComponents.UnrequiredFields;
+import guru.TestBase;
+import guru.pages.components.BirthCalendar;
+import guru.pages.RegistrationPage;
+import guru.pages.components.RequiredFields;
+import guru.pages.components.UnrequiredFields;
 import guru.utils.RandomUtilits;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import java.util.Locale;
 
 
 public class PracticeFormTests extends TestBase {
