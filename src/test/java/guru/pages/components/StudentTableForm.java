@@ -20,9 +20,10 @@ public class StudentTableForm {
         return this;
     }
 
-    public StudentTableForm assertBirth(String month,
+    public StudentTableForm assertBirth(String day,
+                                        String month,
                                         String year){
-        tableField.shouldHave(text("26 "+month+","+year));
+        tableField.shouldHave(text(day+" "+month+","+year));
         return this;
     }
 

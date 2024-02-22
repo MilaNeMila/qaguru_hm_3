@@ -3,7 +3,6 @@ package guru.pages;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.cssClass;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
@@ -63,8 +62,8 @@ public class RegistrationPage {
         subjectsField.setValue(subjects).pressEnter();
         return this;
     }
-    public RegistrationPage setPicture(){
-        pictureField.uploadFromClasspath("photo_2024-01-02_16-20-48.jpg");
+    public RegistrationPage setPicture(String picture){
+        pictureField.uploadFromClasspath(picture);
         return this;
     }
 

@@ -1,9 +1,12 @@
 package guru.utils;
+import com.codeborne.selenide.SelenideElement;
 import com.github.javafaker.Faker;
 
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import static com.codeborne.selenide.Selenide.$;
 
 public class RandomUtilits {
     Faker faker = new Faker(new Locale("ru"));
@@ -20,7 +23,10 @@ public class RandomUtilits {
             userState = randomState(),
             userCity = cityByState(userState),
             userSubjects = randomSubjects(),
-            userHobbie = randomHobbie();
+            userHobbie = randomHobbie(),
+            userPicture = randomPicture(),
+            birthDay = String.valueOf(faker.number().numberBetween(1, 28));
+
 
 
     public String randomMonth() {
@@ -43,6 +49,9 @@ public class RandomUtilits {
     public String randomState() {
         return faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     }
+    public String randomPicture() {
+        return faker.options().option("1.jpg", "2.jpg", "3.jpg");
+    }
 
     public String cityByState(String state) {
         Map<String, String> city = new HashMap<>() {{
@@ -59,4 +68,5 @@ public class RandomUtilits {
         }};
         return city.get(state);
     }
+
 }

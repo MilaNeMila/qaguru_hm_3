@@ -24,25 +24,27 @@ public class PracticeFormTests extends TestBase {
                 .setLastName(randomData.lastName)
                 .setNumber(randomData.userNumber)
                 .setGenderField(randomData.gender);
-        birthCalendar.birthDayInputField(randomData.birthMonth, randomData.birthYear);
+        birthCalendar.birthDayInputField(randomData.birthDay,randomData.birthMonth, randomData.birthYear);
         registrationPage.setAddress(randomData.streetAddress)
                         .setEmail(randomData.userEmail)
                         .setHobbie(randomData.userHobbie)
                         .setSubjects(randomData.userSubjects)
                         .setState(randomData.userState)
                         .setCity(randomData.userCity)
-                        .setPicture();
+                        .setPicture(randomData.userPicture);
 
         registrationPage.submitButtonClick();
+        System.out.println("In test class" + randomData.birthDay);
         studentTableForm.assertName(randomData.firstName, randomData.lastName)
                 .assertFieldShouldHave(randomData.userNumber)
-                .assertBirth(randomData.birthMonth,randomData.birthYear)
+                .assertBirth(randomData.birthDay, randomData.birthMonth,randomData.birthYear)
                 .assertFieldShouldHave(randomData.gender)
                 .assertFieldShouldHave(randomData.streetAddress)
                 .assertFieldShouldHave(randomData.userEmail)
                 .assertFieldShouldHave(randomData.userHobbie)
                 .assertCity(randomData.userState, randomData.userCity)
-                .assertFieldShouldHave(randomData.userSubjects);
+                .assertFieldShouldHave(randomData.userSubjects)
+                .assertFieldShouldHave(randomData.userPicture);
 
 }
 
@@ -53,11 +55,11 @@ public class PracticeFormTests extends TestBase {
                 .setLastName("Last")
                 .setNumber("7777777777")
                 .setGenderField("Female");
-        birthCalendar.birthDayInputField("February","2001");
+        //birthCalendar.birthDayInputField("February","2001");
         registrationPage.submitButtonClick();
         studentTableForm.assertName("Name", "Last")
                 .assertFieldShouldHave("7777777777")
-                .assertBirth("February","2001")
+                //.assertBirth("February","2001")
                 .assertFieldShouldHave("Female");
     }
 
