@@ -9,8 +9,7 @@ import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
-    private static SelenideElement tableField = $(".table"),
-            submitButton = $("#submit"),
+    private static SelenideElement submitButton = $("#submit"),
             userForm = $("#userForm"),
             subjectsField = $("#subjectsInput"),
             emailField = $("#userEmail"),
@@ -93,27 +92,6 @@ public class RegistrationPage {
         stateCityField.$(byText(city)).click();
         return this;
     }
-    public RegistrationPage assertName(String firstName,
-                                       String lastName){
-        tableField.shouldHave(text(firstName+ " " + lastName));
-        return this;
-    }
 
-    public RegistrationPage assertFieldShouldHave(String value){
-        tableField.shouldHave(text(value));
-        return this;
-    }
-
-    public RegistrationPage assertBirth(String month,
-                                        String year){
-        tableField.shouldHave(text("26 "+month+","+year));
-        return this;
-    }
-
-    public RegistrationPage assertCity(String state,
-                                       String city){
-        tableField.shouldHave(text(state +" " +city));
-        return this;
-    }
 
 }

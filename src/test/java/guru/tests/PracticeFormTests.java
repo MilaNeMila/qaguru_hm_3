@@ -3,6 +3,7 @@ package guru.tests;
 import guru.TestBase;
 import guru.pages.components.BirthCalendar;
 import guru.pages.RegistrationPage;
+import guru.pages.components.StudentTableForm;
 import guru.utils.RandomUtilits;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.Test;
 public class PracticeFormTests extends TestBase {
 
  RegistrationPage registrationPage = new RegistrationPage();
+ StudentTableForm studentTableForm = new StudentTableForm();
  BirthCalendar birthCalendar = new BirthCalendar();
  RandomUtilits randomData = new RandomUtilits();
 
@@ -32,7 +34,7 @@ public class PracticeFormTests extends TestBase {
                         .setPicture();
 
         registrationPage.submitButtonClick();
-        registrationPage.assertName(randomData.firstName, randomData.lastName)
+        studentTableForm.assertName(randomData.firstName, randomData.lastName)
                 .assertFieldShouldHave(randomData.userNumber)
                 .assertBirth(randomData.birthMonth,randomData.birthYear)
                 .assertFieldShouldHave(randomData.gender)
@@ -53,7 +55,7 @@ public class PracticeFormTests extends TestBase {
                 .setGenderField("Female");
         birthCalendar.birthDayInputField("February","2001");
         registrationPage.submitButtonClick();
-        registrationPage.assertName("Name", "Last")
+        studentTableForm.assertName("Name", "Last")
                 .assertFieldShouldHave("7777777777")
                 .assertBirth("February","2001")
                 .assertFieldShouldHave("Female");
