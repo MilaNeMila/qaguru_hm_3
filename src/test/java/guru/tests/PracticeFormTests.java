@@ -34,7 +34,6 @@ public class PracticeFormTests extends TestBase {
                         .setPicture(randomData.userPicture);
 
         registrationPage.submitButtonClick();
-        System.out.println("In test class" + randomData.birthDay);
         studentTableForm.assertName(randomData.firstName, randomData.lastName)
                 .assertFieldShouldHave(randomData.userNumber)
                 .assertBirth(randomData.birthDay, randomData.birthMonth,randomData.birthYear)
