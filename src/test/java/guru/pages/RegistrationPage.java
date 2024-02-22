@@ -4,67 +4,31 @@ import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.Condition.cssClass;
 import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 
 public class RegistrationPage {
     private static SelenideElement tableField = $(".table"),
             submitButton = $("#submit"),
-            userForm = $("#userForm");;
+            userForm = $("#userForm"),
+            subjectsField = $("#subjectsInput"),
+            emailField = $("#userEmail"),
+            hobbieField = $("#hobbiesWrapper"),
+            addressField = $("#currentAddress"),
+            pictureField = $("#uploadPicture"),
+            stateCityField = $("#stateCity-wrapper"),
+            firstNameField = $("#firstName"),
+            lastNameField = $("#lastName"),
+            genderField = $("#genterWrapper"),
+            numberField = $("#userNumber");
+
     public RegistrationPage openPage(){
         open("automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
-
-    public RegistrationPage assertName(String firstName,
-                                       String lastName){
-        tableField.shouldHave(text(firstName+ " " + lastName));
-        return this;
-    }
-
-    public RegistrationPage assertGender(String gender){
-        tableField.shouldHave(text(gender));
-        return this;
-    }
-
-    public RegistrationPage assertNumber(String userNumber){
-        tableField.shouldHave(text(userNumber));
-        return this;
-    }
-    public RegistrationPage assertBirth(String month,
-                                        String year){
-        tableField.shouldHave(text("26 "+month+","+year));
-        return this;
-    }
-
-    public RegistrationPage assertSubjects(String subjects){
-        tableField.shouldHave(text(subjects));
-        return this;
-    }
-
-    public RegistrationPage assertAddress(String address){
-        tableField.shouldHave(text(address));
-        return this;
-    }
-    public RegistrationPage assertHobbie(String hobbie
-    ){
-        tableField.shouldHave(text(hobbie));
-        return this;
-    }
-
-    public RegistrationPage assertEmail(String emailUser){
-        tableField.shouldHave(text(emailUser));
-        return this;
-    }
-
-    public RegistrationPage assertCity(String state,
-                                       String city){
-        tableField.shouldHave(text(state +" " +city));
-        return this;
-    }
-
 
     public RegistrationPage submitButtonClick(){
         submitButton.click();
@@ -75,4 +39,81 @@ public class RegistrationPage {
         userForm.shouldHave(cssClass("was-validated"));
         return this;
     }
+
+    public RegistrationPage setFirstName (String firstName) {
+        firstNameField.setValue(firstName);
+        return this;
+    }
+    public RegistrationPage setLastName (String lastName) {
+        lastNameField.setValue(lastName);
+        return this;
+    }
+    public RegistrationPage setNumber (String userNumber) {
+        numberField.setValue(userNumber);
+        return this;
+    }
+
+
+    public RegistrationPage setGenderField(String gender){
+        genderField.$(byText(gender)).click();
+        return this;
+    }
+
+
+    public RegistrationPage setSubjects(String subjects){
+        subjectsField.setValue(subjects).pressEnter();
+        return this;
+    }
+    public RegistrationPage setPicture(){
+        pictureField.uploadFromClasspath("photo_2024-01-02_16-20-48.jpg");
+        return this;
+    }
+
+    public RegistrationPage setEmail(String emailUser){
+        emailField.setValue(emailUser);
+        return this;
+    }
+    public RegistrationPage setAddress(String address){
+        addressField.setValue(address);
+        return this;
+    }
+    public RegistrationPage setHobbie(String hobbie){
+        hobbieField.$(byText(hobbie)).click();
+        return this;
+    }
+
+    public RegistrationPage setState(String state){
+        stateCityField.$(byText("Select State")).click();
+        stateCityField.$(byText(state)).click();
+        return this;
+    }
+
+    public RegistrationPage setCity(String city){
+        stateCityField.$(byText("Select City")).click();
+        stateCityField.$(byText(city)).click();
+        return this;
+    }
+    public RegistrationPage assertName(String firstName,
+                                       String lastName){
+        tableField.shouldHave(text(firstName+ " " + lastName));
+        return this;
+    }
+
+    public RegistrationPage assertFieldShouldHave(String value){
+        tableField.shouldHave(text(value));
+        return this;
+    }
+
+    public RegistrationPage assertBirth(String month,
+                                        String year){
+        tableField.shouldHave(text("26 "+month+","+year));
+        return this;
+    }
+
+    public RegistrationPage assertCity(String state,
+                                       String city){
+        tableField.shouldHave(text(state +" " +city));
+        return this;
+    }
+
 }
