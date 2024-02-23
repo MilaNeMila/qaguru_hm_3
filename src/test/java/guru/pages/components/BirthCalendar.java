@@ -19,11 +19,7 @@ public class BirthCalendar {
         birthCalendarField.click();
         birthMonthField.selectOption(month);
         birthYearField.selectOption(year);
-        if (Integer.parseInt(day) < 10) {
-            $(".react-datepicker__day--00" + day + ":not(.react-datepicker__day--outside-month").click();
-        } else {
-            $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month").click();
-        }
+        $(".react-datepicker__day--0" + day + ":not(.react-datepicker__day--outside-month").click();
     }
 
 

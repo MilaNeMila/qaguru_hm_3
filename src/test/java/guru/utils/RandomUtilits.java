@@ -25,7 +25,7 @@ public class RandomUtilits {
             userSubjects = randomSubjects(),
             userHobbie = randomHobbie(),
             userPicture = randomPicture(),
-            birthDay = String.valueOf(faker.number().numberBetween(1, 28));
+            birthDay= String.format("%02d", faker.number().numberBetween(1,28));
 
 
 
